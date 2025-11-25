@@ -3,56 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>간편 주문 입력 사이트</title>
+    <title>고급 침구류 주문서</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
-        .container { max-width: 600px; margin: auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #333; }
-        label { display: block; margin-top: 10px; font-weight: bold; }
-        input[type="text"], input[type="number"], input[type="email"] {
+        /* 기본 스타일 및 글꼴 설정 */
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #F8F8F4; /* 따뜻한 미색 배경 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container { 
+            max-width: 500px; /* 너비 약간 줄여 모던함 강조 */
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* 패딩이 전체 너비에 포함되도록 설정 */
+            padding: 30px; 
+            background: #fff; 
+            border-radius: 12px; /* 둥근 모서리 더 강조 */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* 부드러운 그림자 */
+            box-sizing: border-box;
+        }
+        h1 { 
+            text-align: center; 
+            color: #2c3e50; /* 짙은 회색 계열 제목 */
+            margin-bottom: 30px;
+            font-weight: 500; /* 중간 굵기 */
+        }
+        .product-image-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .product-image {
+            max-width: 80%; /* 이미지 크기 조절 */
+            height: auto;
+            border-radius: 8px; /* 이미지도 둥근 모서리 */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        label { 
+            display: block; 
+            margin-top: 18px; 
+            margin-bottom: 5px;
+            font-weight: 400; /* 일반 굵기 */
+            font-size: 0.95em;
+            color: #555;
+        }
+        input[type="text"], 
+        input[type="number"], 
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0; /* 얇고 은은한 테두리 */
+            border-radius: 6px; 
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333;
+            transition: border-color 0.3s ease; /* 호버/포커스 시 부드러운 전환 */
+        }
+        input[type="text"]:focus, 
+        input[type="number"]:focus, 
+        input[type="email"]:focus {
+            border-color: #a0c2e7; /* 포커스 시 밝은 파란색 테두리 */
+            outline: none; /* 기본 아웃라인 제거 */
         }
         button {
-            background-color: #007bff;
+            background-color: #4CAF50; /* 차분한 녹색 계열 */
             color: white;
-            padding: 12px 20px;
-            margin-top: 20px;
+            padding: 15px 25px;
+            margin-top: 30px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             width: 100%;
-            font-size: 16px;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: background-color 0.3s ease; /* 호버 시 부드러운 전환 */
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #45a049; /* 호버 시 약간 진해짐 */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📦 상품 주문서</h1>
+        <div class="product-image-container">
+            <img src="https://i.imgur.com/your-blanket-image.jpg" alt="고급 침구류 상품 이미지" class="product-image">
+            </div>
+        <h1>고급 침구류 주문서</h1>
         <form action="https://formspree.io/f/xyzanddw" method="POST">
-            </form>
             
             <label for="name">주문자 성함</label>
             <input type="text" id="name" name="주문자 성함" required>
 
             <label for="product">주문 상품명</label>
-            <input type="text" id="product" name="주문 상품명" required>
-
+            <input type="text" id="product" name="주문 상품명" value="프리미엄 구스 다운 이불" readonly>
             <label for="quantity">수량</label>
-            <input type="number" id="quantity" name="주문 수량" min="1" required>
+            <input type="number" id="quantity" name="주문 수량" min="1" value="1" required>
             
             <label for="address">배송 주소</label>
             <input type="text" id="address" name="배송 주소" required>
             
             <label for="phone">연락처</label>
-            <input type="text" id="phone" name="연락처" placeholder="010-0000-0000" required>
+            <input type="text" id="phone" name="연락처" placeholder="예: 010-1234-5678" required>
+
+            <label for="email">이메일 주소 (선택 사항)</label>
+            <input type="email" id="email" name="이메일 주소" placeholder="예: example@email.com">
 
             <button type="submit">주문 완료 및 제출</button>
         </form>
