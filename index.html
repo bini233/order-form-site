@@ -498,33 +498,173 @@
 <script>
   /* --- 상품 데이터 --- */
   const products = [
-    { name: "Mossy Wood 디퓨저", price: 66500 },
-    { name: "Mossy Wood 캔들", price: 65100 },
-    { name: "Mossy Wood 룸스프레이", price: 61600 },
-    { name: "Mint Forest 디퓨저", price: 66500 },
-    { name: "Mint Forest 캔들", price: 65100 },
-    { name: "Mint Forest 룸스프레이", price: 61600 },
-    { name: "White Bloom 디퓨저", price: 66500 },
-    { name: "White Bloom 캔들", price: 65100 },
-    { name: "White Bloom 룸스프레이", price: 61600 },
+  /* -------------------------------
+     SCENT LINE
+  --------------------------------*/
+  {
+    name: "Mossy Wood 디퓨저",
+    price: 66500,
+    img1: "https://via.placeholder.com/600x260?text=Mossy+Wood+Diffuser+1",
+    img2: "https://via.placeholder.com/600x260?text=Mossy+Wood+Diffuser+2",
+    desc: "여기에 Mossy Wood 디퓨저 설명을 입력하세요."
+  },
+  {
+    name: "Mossy Wood 캔들",
+    price: 65100,
+    img1: "https://via.placeholder.com/600x260?text=Mossy+Wood+Candle+1",
+    img2: "https://via.placeholder.com/600x260?text=Mossy+Wood+Candle+2",
+    desc: "여기에 Mossy Wood 캔들 설명을 입력하세요."
+  },
+  {
+    name: "Mossy Wood 룸스프레이",
+    price: 61600,
+    img1: "https://via.placeholder.com/600x260?text=Mossy+Wood+Spray+1",
+    img2: "https://via.placeholder.com/600x260?text=Mossy+Wood+Spray+2",
+    desc: "여기에 Mossy Wood 룸스프레이 설명을 입력하세요."
+  },
 
-    { name: "구스다운 킹 이불세트", price: 1050000 },
-    { name: "구스다운 퀸 이불세트", price: 1008000 },
-    { name: "구스다운 싱글 이불세트", price: 840000 },
+  {
+    name: "Mint Forest 디퓨저",
+    price: 66500,
+    img1: "https://via.placeholder.com/600x260?text=Mint+Forest+Diffuser+1",
+    img2: "https://via.placeholder.com/600x260?text=Mint+Forest+Diffuser+2",
+    desc: "여기에 Mint Forest 디퓨저 설명을 입력하세요."
+  },
+  {
+    name: "Mint Forest 캔들",
+    price: 65100,
+    img1: "https://via.placeholder.com/600x260?text=Mint+Forest+Candle+1",
+    img2: "https://via.placeholder.com/600x260?text=Mint+Forest+Candle+2",
+    desc: "여기에 Mint Forest 캔들 설명을 입력하세요."
+  },
+  {
+    name: "Mint Forest 룸스프레이",
+    price: 61600,
+    img1: "https://via.placeholder.com/600x260?text=Mint+Forest+Spray+1",
+    img2: "https://via.placeholder.com/600x260?text=Mint+Forest+Spray+2",
+    desc: "여기에 Mint Forest 룸스프레이 설명을 입력하세요."
+  },
 
-    { name: "베드시트 킹", price: 189000 },
-    { name: "베드시트 퀸", price: 175000 },
-    { name: "베드시트 싱글", price: 147000 },
+  {
+    name: "White Bloom 디퓨저",
+    price: 66500,
+    img1: "https://via.placeholder.com/600x260?text=White+Bloom+Diffuser+1",
+    img2: "https://via.placeholder.com/600x260?text=White+Bloom+Diffuser+2",
+    desc: "여기에 White Bloom 디퓨저 설명을 입력하세요."
+  },
+  {
+    name: "White Bloom 캔들",
+    price: 65100,
+    img1: "https://via.placeholder.com/600x260?text=White+Bloom+Candle+1",
+    img2: "https://via.placeholder.com/600x260?text=White+Bloom+Candle+2",
+    desc: "여기에 White Bloom 캔들 설명을 입력하세요."
+  },
+  {
+    name: "White Bloom 룸스프레이",
+    price: 61600,
+    img1: "https://via.placeholder.com/600x260?text=White+Bloom+Spray+1",
+    img2: "https://via.placeholder.com/600x260?text=White+Bloom+Spray+2",
+    desc: "여기에 White Bloom 룸스프레이 설명을 입력하세요."
+  },
 
-    { name: "구스다운 프리미엄 베개세트", price: 368000 },
-    { name: "구스다운 킹 베개세트", price: 316000 },
+  /* -------------------------------
+     BEDDING LINE
+  --------------------------------*/
+  {
+    name: "구스다운 킹 이불세트",
+    price: 1050000,
+    img1: "https://via.placeholder.com/600x260?text=Goose+Down+King+1",
+    img2: "https://via.placeholder.com/600x260?text=Goose+Down+King+2",
+    desc: "여기에 구스다운 킹 이불세트 설명을 입력하세요."
+  },
+  {
+    name: "구스다운 퀸 이불세트",
+    price: 1008000,
+    img1: "https://via.placeholder.com/600x260?text=Goose+Down+Queen+1",
+    img2: "https://via.placeholder.com/600x260?text=Goose+Down+Queen+2",
+    desc: "여기에 구스다운 퀸 이불세트 설명을 입력하세요."
+  },
+  {
+    name: "구스다운 싱글 이불세트",
+    price: 840000,
+    img1: "https://via.placeholder.com/600x260?text=Goose+Down+Single+1",
+    img2: "https://via.placeholder.com/600x260?text=Goose+Down+Single+2",
+    desc: "여기에 구스다운 싱글 이불세트 설명을 입력하세요."
+  },
 
-    { name: "배스로브", price: 129500 },
-    { name: "배스 타월 세트", price: 80500 },
-    { name: "페이스 타월 세트", price: 63200 },
+  {
+    name: "베드시트 킹",
+    price: 189000,
+    img1: "https://via.placeholder.com/600x260?text=Bed+Sheet+King+1",
+    img2: "https://via.placeholder.com/600x260?text=Bed+Sheet+King+2",
+    desc: "여기에 베드시트 킹 설명을 입력하세요."
+  },
+  {
+    name: "베드시트 퀸",
+    price: 175000,
+    img1: "https://via.placeholder.com/600x260?text=Bed+Sheet+Queen+1",
+    img2: "https://via.placeholder.com/600x260?text=Bed+Sheet+Queen+2",
+    desc: "여기에 베드시트 퀸 설명을 입력하세요."
+  },
+  {
+    name: "베드시트 싱글",
+    price: 147000,
+    img1: "https://via.placeholder.com/600x260?text=Bed+Sheet+Single+1",
+    img2: "https://via.placeholder.com/600x260?text=Bed+Sheet+Single+2",
+    desc: "여기에 베드시트 싱글 설명을 입력하세요."
+  },
 
-    { name: "버터 치킨 커리", price: 27300 }
-  ];
+  {
+    name: "구스다운 프리미엄 베개세트",
+    price: 368000,
+    img1: "https://via.placeholder.com/600x260?text=Premium+Pillow+1",
+    img2: "https://via.placeholder.com/600x260?text=Premium+Pillow+2",
+    desc: "여기에 프리미엄 베개세트 설명을 입력하세요."
+  },
+  {
+    name: "구스다운 킹 베개세트",
+    price: 316000,
+    img1: "https://via.placeholder.com/600x260?text=King+Pillow+1",
+    img2: "https://via.placeholder.com/600x260?text=King+Pillow+2",
+    desc: "여기에 킹 베개세트 설명을 입력하세요."
+  },
+
+  /* -------------------------------
+     TOWEL LINE
+  --------------------------------*/
+  {
+    name: "배스로브",
+    price: 129500,
+    img1: "https://via.placeholder.com/600x260?text=Bathrobe+1",
+    img2: "https://via.placeholder.com/600x260?text=Bathrobe+2",
+    desc: "여기에 배스로브 설명을 입력하세요."
+  },
+  {
+    name: "배스 타월 세트",
+    price: 80500,
+    img1: "https://via.placeholder.com/600x260?text=Bath+Towel+1",
+    img2: "https://via.placeholder.com/600x260?text=Bath+Towel+2",
+    desc: "여기에 배스 타월 세트 설명을 입력하세요."
+  },
+  {
+    name: "페이스 타월 세트",
+    price: 63200,
+    img1: "https://via.placeholder.com/600x260?text=Face+Towel+1",
+    img2: "https://via.placeholder.com/600x260?text=Face+Towel+2",
+    desc: "여기에 페이스 타월 세트 설명을 입력하세요."
+  },
+
+  /* -------------------------------
+     GOURMET LINE
+  --------------------------------*/
+  {
+    name: "버터 치킨 커리",
+    price: 27300,
+    img1: "https://via.placeholder.com/600x260?text=Butter+Chicken+1",
+    img2: "https://via.placeholder.com/600x260?text=Butter+Chicken+2",
+    desc: "여기에 버터 치킨 커리 설명을 입력하세요."
+  }
+];
 
   const qtyInputs = document.querySelectorAll('.qty-input');
 
