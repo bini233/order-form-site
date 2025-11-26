@@ -231,6 +231,109 @@
   }
 
   .hidden { display: none; }
+
+  /* =============== 모바일 최적화 =============== */
+@media (max-width: 768px) {
+
+    /* 전체 레이아웃 세로 배치 */
+    .wrapper, .container, .content-layout {
+        flex-direction: column !important;
+        width: 100% !important;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* 왼쪽 상품 목록 */
+    .product-list {
+        width: 100% !important;
+        max-width: 100%;
+        padding: 10px !important;
+    }
+
+    .product-item {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    /* 오른쪽 상품 상세 */
+    .product-detail {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 15px !important;
+        margin-top: 20px;
+    }
+
+    /* 상품명 크기 축소 */
+    .detail-title {
+        font-size: 20px !important;
+        line-height: 1.4;
+    }
+
+    /* 이미지 슬라이더 */
+    .slider {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .slider img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* 설명 텍스트 */
+    .detail-desc {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* 수량 입력과 가격 */
+    .price-qty-box {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    /* 수량 input */
+    .qty-input {
+        width: 80px !important;
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    /* 총액 표시 */
+    .total-price {
+        font-size: 18px !important;
+        margin-top: 10px;
+    }
+
+    /* 주문자 정보 입력 폼 */
+    form {
+        width: 100% !important;
+        padding: 15px !important;
+        box-sizing: border-box;
+    }
+
+    input, select {
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    /* 버튼 */
+    button {
+        font-size: 16px !important;
+        padding: 12px !important;
+        border-radius: 6px;
+        margin-top: 25px;
+        width: 100%;
+    }
+}
+
+
+  
 </style>
 </head>
 
