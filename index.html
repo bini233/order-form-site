@@ -52,6 +52,15 @@
     color: #2c3e50;
   }
 
+  .category-title {
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-top: 25px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e2e2e2;
+    color: #222;
+  }
+
   label {
     display: block;
     margin: 16px 0 6px;
@@ -75,7 +84,7 @@
     border-bottom: 1px solid #2c3e50;
   }
 
-  /* 2단 레이아웃: 상품 선택 + 상세 미리보기 */
+  /* 상품 선택 2단 레이아웃 */
   .flex-container {
     display: flex;
     gap: 30px;
@@ -103,6 +112,7 @@
   .product-row:hover {
     background: #fafafa;
   }
+
   .product-name {
     font-weight: 500;
     color: #333;
@@ -119,25 +129,30 @@
     text-align: center;
   }
 
-  .hint {
-    font-size: 0.85em;
-    color: #888;
-    margin-top: 4px;
+  .total-box {
+    background: #fafafa;
+    border: 1px solid #eee;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 15px;
   }
 
-  /* 미리보기 패널 */
+  /* 우측 상세 */
   .detail-title {
     font-size: 1.4em;
     font-weight: 600;
     margin-bottom: 15px;
     color: #2c3e50;
   }
+
   .slider {
-    position: relative;
     width: 100%;
     height: 260px;
-    overflow: hidden;
     border-radius: 6px;
+    overflow: hidden;
     margin-bottom: 15px;
   }
   .slide-img {
@@ -149,6 +164,7 @@
   .slide-img.active {
     display: block;
   }
+
   .slider-controls {
     text-align: center;
     margin-bottom: 10px;
@@ -197,21 +213,6 @@
     text-align: center;
   }
 
-  .total-box {
-    background: #fafafa;
-    border: 1px solid #eee;
-    padding: 12px 15px;
-    border-radius: 6px;
-    font-size: 1.1em;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-top: 8px;
-  }
-
-  .hidden {
-    display: none;
-  }
-
   button[type="submit"] {
     width: 100%;
     padding: 16px;
@@ -222,7 +223,6 @@
     border-radius: 6px;
     font-size: 1.05em;
     cursor: pointer;
-    transition: 0.3s;
   }
   button[type="submit"]:hover {
     background: #fff;
@@ -230,19 +230,7 @@
     border: 1px solid #2c3e50;
   }
 
-  @media (max-width: 900px) {
-    body { padding: 15px; }
-    .page-wrapper { padding: 20px; }
-    .flex-container {
-      flex-direction: column;
-    }
-    .product-side,
-    .preview-side {
-      width: 100%;
-      border: none;
-      padding: 0;
-    }
-  }
+  .hidden { display: none; }
 </style>
 </head>
 
@@ -251,98 +239,200 @@
 
   <h1>연말 할인 주문서</h1>
   <h4>감사의 마음을 담아 특별 할인 혜택을 드립니다!</h4>
+
   <div class="info-line">
-    판매 상품: 전상품<br>
     판매 기간: 11월 10일(월) ~ 12월 31일(수) (마감 이후 접수 불가)<br>
-    구매 방법: 폼 작성 후 <b>하나은행 183-910001-24105</b> 로 계좌 입금<br>
-    배송일: 예약 및 결제 완료 확인 후 (영업일 기준) 익일 배송 진행<br>
-    * 공휴일 및 주말 배송 미진행<br>
-    문의 사항: 02-0000-0000 (평일 09시~18시)
+    구매 방법: <b>하나은행 183-910001-24105</b> 로 입금<br>
+    배송: 결제 확인 후 익일 배송 (주말·공휴일 제외)<br>
+    문의: 02-0000-0000 (평일 09:00~18:00)
   </div>
 
-  <!-- 주문 전체를 Formspree로 보냄 -->
+  <!-- FORM START -->
   <form action="https://formspree.io/f/xyzanddw" method="POST" onsubmit="return validateForm();">
 
     <!-- 1. 주문자 정보 -->
     <h2>1. 주문자 정보</h2>
+
     <label>주문자 이름</label>
     <input type="text" name="주문자 이름" required>
 
     <label>소속 회사</label>
     <input type="text" name="소속 회사" required>
 
-    <!-- 2. 구매 상품 + 4) 구매 개수 -->
+    <!-- 2. 구매 상품 -->
     <h2>2. 구매 상품 및 수량</h2>
-    <div class="hint">
-      왼쪽에서 상품별 수량을 입력하면, 오른쪽에서 상세 정보와 함께 해당 상품 금액이 반영됩니다.<br>
-      여러 상품을 동시에 구매하실 수 있습니다.
-    </div>
 
     <div class="flex-container">
-      <!-- 좌측: 상품 리스트 + 수량 -->
+      <!-- LEFT SIDE: 상품 목록 -->
       <div class="product-side">
+
+        <!-- SCENT LINE -->
+        <div class="category-title">Scent Line</div>
+
         <div class="product-row" data-index="0">
-          <div class="product-name">[30% 할인] Mossy Wood 디퓨저</div>
+          <div class="product-name">Mossy Wood 디퓨저</div>
           <div class="product-price">66,500원</div>
-          <div class="product-qty">
-            <input type="number" name="Mossy Wood 디퓨저 수량" class="qty-input" data-index="0" min="0" value="0">
-          </div>
+          <div class="product-qty"><input type="number" name="Mossy Wood 디퓨저" class="qty-input" data-index="0" min="0" value="0"></div>
         </div>
+
         <div class="product-row" data-index="1">
-          <div class="product-name">[30% 할인] Mossy Wood 캔들</div>
+          <div class="product-name">Mossy Wood 캔들</div>
           <div class="product-price">65,100원</div>
-          <div class="product-qty">
-            <input type="number" name="Mossy Wood 캔들 수량" class="qty-input" data-index="1" min="0" value="0">
-          </div>
+          <div class="product-qty"><input type="number" name="Mossy Wood 캔들" class="qty-input" data-index="1" min="0" value="0"></div>
         </div>
+
         <div class="product-row" data-index="2">
-          <div class="product-name">[30% 할인] Mossy Wood 룸스프레이</div>
+          <div class="product-name">Mossy Wood 룸스프레이</div>
           <div class="product-price">61,600원</div>
-          <div class="product-qty">
-            <input type="number" name="Mossy Wood 룸스프레이 수량" class="qty-input" data-index="2" min="0" value="0">
-          </div>
+          <div class="product-qty"><input type="number" name="Mossy Wood 룸스프레이" class="qty-input" data-index="2" min="0" value="0"></div>
         </div>
+
         <div class="product-row" data-index="3">
-          <div class="product-name">[30% 할인] Mint Forest 디퓨저</div>
+          <div class="product-name">Mint Forest 디퓨저</div>
           <div class="product-price">66,500원</div>
-          <div class="product-qty">
-            <input type="number" name="Mint Forest 디퓨저 수량" class="qty-input" data-index="3" min="0" value="0">
-          </div>
+          <div class="product-qty"><input type="number" name="Mint Forest 디퓨저" class="qty-input" data-index="3" min="0" value="0"></div>
         </div>
+
         <div class="product-row" data-index="4">
-          <div class="product-name">[30% 할인] Mint Forest 캔들</div>
+          <div class="product-name">Mint Forest 캔들</div>
           <div class="product-price">65,100원</div>
-          <div class="product-qty">
-            <input type="number" name="Mint Forest 캔들 수량" class="qty-input" data-index="4" min="0" value="0">
-          </div>
+          <div class="product-qty"><input type="number" name="Mint Forest 캔들" class="qty-input" data-index="4" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="5">
+          <div class="product-name">Mint Forest 룸스프레이</div>
+          <div class="product-price">61,600원</div>
+          <div class="product-qty"><input type="number" name="Mint Forest 룸스프레이" class="qty-input" data-index="5" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="6">
+          <div class="product-name">White Bloom 디퓨저</div>
+          <div class="product-price">66,500원</div>
+          <div class="product-qty"><input type="number" name="White Bloom 디퓨저" class="qty-input" data-index="6" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="7">
+          <div class="product-name">White Bloom 캔들</div>
+          <div class="product-price">65,100원</div>
+          <div class="product-qty"><input type="number" name="White Bloom 캔들" class="qty-input" data-index="7" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="8">
+          <div class="product-name">White Bloom 룸스프레이</div>
+          <div class="product-price">61,600원</div>
+          <div class="product-qty"><input type="number" name="White Bloom 룸스프레이" class="qty-input" data-index="8" min="0" value="0"></div>
+        </div>
+
+        <!-- BEDDING LINE -->
+        <div class="category-title">Bedding Line</div>
+
+        <div class="product-row" data-index="9">
+          <div class="product-name">구스다운 킹 이불세트</div>
+          <div class="product-price">1,050,000원</div>
+          <div class="product-qty"><input type="number" name="구스다운 킹 이불세트" class="qty-input" data-index="9" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="10">
+          <div class="product-name">구스다운 퀸 이불세트</div>
+          <div class="product-price">1,008,000원</div>
+          <div class="product-qty"><input type="number" name="구스다운 퀸 이불세트" class="qty-input" data-index="10" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="11">
+          <div class="product-name">구스다운 싱글 이불세트</div>
+          <div class="product-price">840,000원</div>
+          <div class="product-qty"><input type="number" name="구스다운 싱글 이불세트" class="qty-input" data-index="11" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="12">
+          <div class="product-name">베드시트 킹</div>
+          <div class="product-price">189,000원</div>
+          <div class="product-qty"><input type="number" name="베드시트 킹" class="qty-input" data-index="12" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="13">
+          <div class="product-name">베드시트 퀸</div>
+          <div class="product-price">175,000원</div>
+          <div class="product-qty"><input type="number" name="베드시트 퀸" class="qty-input" data-index="13" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="14">
+          <div class="product-name">베드시트 싱글</div>
+          <div class="product-price">147,000원</div>
+          <div class="product-qty"><input type="number" name="베드시트 싱글" class="qty-input" data-index="14" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="15">
+          <div class="product-name">구스다운 프리미엄 베개세트</div>
+          <div class="product-price">368,000원</div>
+          <div class="product-qty"><input type="number" name="구스다운 프리미엄 베개세트" class="qty-input" data-index="15" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="16">
+          <div class="product-name">구스다운 킹 베개세트</div>
+          <div class="product-price">316,000원</div>
+          <div class="product-qty"><input type="number" name="구스다운 킹 베개세트" class="qty-input" data-index="16" min="0" value="0"></div>
+        </div>
+
+        <!-- TOWEL LINE -->
+        <div class="category-title">Towel Line</div>
+
+        <div class="product-row" data-index="17">
+          <div class="product-name">배스로브</div>
+          <div class="product-price">129,500원</div>
+          <div class="product-qty"><input type="number" name="배스로브" class="qty-input" data-index="17" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="18">
+          <div class="product-name">배스 타월 세트(2개)</div>
+          <div class="product-price">80,500원</div>
+          <div class="product-qty"><input type="number" name="배스 타월 세트" class="qty-input" data-index="18" min="0" value="0"></div>
+        </div>
+
+        <div class="product-row" data-index="19">
+          <div class="product-name">페이스 타월 세트(3개)</div>
+          <div class="product-price">63,200원</div>
+          <div class="product-qty"><input type="number" name="페이스 타월 세트" class="qty-input" data-index="19" min="0" value="0"></div>
+        </div>
+
+        <!-- GOURMET LINE -->
+        <div class="category-title">Gourmet Line</div>
+
+        <div class="product-row" data-index="20">
+          <div class="product-name">버터 치킨 커리(난 추가 증정)</div>
+          <div class="product-price">27,300원</div>
+          <div class="product-qty"><input type="number" name="버터 치킨 커리" class="qty-input" data-index="20" min="0" value="0"></div>
         </div>
 
         <div class="total-box" id="grandTotalBox">
           주문 총액: <span id="grandTotal">0</span>원
         </div>
         <input type="hidden" name="주문 총액" id="grandTotalInput" value="0">
+
       </div>
 
-      <!-- 우측: 선택한 상품 미리보기 -->
+      <!-- RIGHT SIDE: 상품 상세 미리보기 -->
       <div class="preview-side">
-        <div class="detail-title" id="detailTitle">상품명을 선택해주세요</div>
+        <div class="detail-title" id="detailTitle">상품을 선택해주세요</div>
 
         <div class="slider">
-          <img id="img1" class="slide-img active" src="https://via.placeholder.com/600x260?text=상품+이미지+1" alt="">
-          <img id="img2" class="slide-img" src="https://via.placeholder.com/600x260?text=상품+이미지+2" alt="">
+          <img id="img1" class="slide-img active" src="https://via.placeholder.com/600x260?text=상품+이미지+1">
+          <img id="img2" class="slide-img" src="https://via.placeholder.com/600x260?text=상품+이미지+2">
         </div>
+
         <div class="slider-controls">
           <button type="button" onclick="showSlide(1)">이미지 1</button>
           <button type="button" onclick="showSlide(2)">이미지 2</button>
         </div>
 
         <div class="detail-desc" id="detailDesc">
-          상품을 클릭하시면 이곳에 상세 설명(더미 텍스트 영역)이 표시됩니다.
+          상품을 클릭하시면 상세 정보가 여기에 표시됩니다.
         </div>
 
         <div class="detail-price">
           단가: <span id="detailPrice">0</span>원
         </div>
+
         <div class="detail-subtotal">
           현재 상품 금액: <span id="detailSubtotal">0</span>원
         </div>
@@ -354,7 +444,7 @@
       </div>
     </div>
 
-    <!-- 5~7. 배송 정보 -->
+    <!-- 배송 정보 -->
     <h2>3. 배송 정보</h2>
     <label>수취인 이름</label>
     <input type="text" name="수취인 이름" required>
@@ -365,33 +455,31 @@
     <label>수취인 주소</label>
     <input type="text" name="수취인 주소" required>
 
-    <!-- 8. 결제 방식 -->
-    <h2>4. 결제 방식 선택</h2>
-    <label>결제 방식</label>
+    <!-- 결제 방식 -->
+    <h2>4. 결제 방식</h2>
+    <label>결제 방식 선택</label>
     <select name="결제 방식" id="paySelect" required>
       <option value="">선택해 주세요</option>
       <option value="계좌이체">계좌이체</option>
-      <option value="카드결제">카드결제(개인/법인)</option>
+      <option value="카드결제">카드결제</option>
     </select>
 
     <div id="bankArea" class="hidden">
-      <label>입금자명 (계좌이체 시 필수)</label>
+      <label>입금자명</label>
       <input type="text" name="입금자명">
 
-      <label>입금 금액 (주문 총액과 일치해야 합니다)</label>
+      <label>입금 금액</label>
       <input type="number" name="입금 금액" id="depositAmount" min="0">
-      <div class="hint">폼 제출 시, 입금 금액이 주문 총액과 다른 경우 안내 메시지가 표시됩니다.</div>
     </div>
 
     <div id="cardArea" class="hidden">
-      <label>카드 결제 링크를 받을 연락처</label>
+      <label>결제 링크 받을 연락처</label>
       <input type="text" name="카드결제 연락처">
     </div>
 
-    <!-- 10~11. 현금영수증 / 세금계산서 -->
-    <h2>5. 현금영수증 / 세금계산서 발행</h2>
-
-    <label>발행 여부 선택</label>
+    <!-- 증빙 -->
+    <h2>5. 현금영수증 / 세금계산서</h2>
+    <label>발행 여부</label>
     <select name="증빙 선택" id="taxSelect">
       <option value="">선택 안 함</option>
       <option value="현금영수증">현금영수증(개인)</option>
@@ -399,54 +487,67 @@
     </select>
 
     <div id="taxArea" class="hidden">
-      <label>현금영수증(개인) 또는 세금계산서(기업) 발행 번호</label>
+      <label>발행 번호</label>
       <input type="text" name="증빙 발행 번호">
     </div>
 
-    <button type="submit">주문서 제출 (결제 없음)</button>
+    <button type="submit">주문서 제출하기</button>
   </form>
 </div>
 
 <script>
-  // 상품 데이터
+  /* --- 상품 데이터 --- */
   const products = [
-    { name: "[30% 할인] Mossy Wood 디퓨저", price: 66500 },
-    { name: "[30% 할인] Mossy Wood 캔들", price: 65100 },
-    { name: "[30% 할인] Mossy Wood 룸스프레이", price: 61600 },
-    { name: "[30% 할인] Mint Forest 디퓨저", price: 66500 },
-    { name: "[30% 할인] Mint Forest 캔들", price: 65100 }
+    { name: "Mossy Wood 디퓨저", price: 66500 },
+    { name: "Mossy Wood 캔들", price: 65100 },
+    { name: "Mossy Wood 룸스프레이", price: 61600 },
+    { name: "Mint Forest 디퓨저", price: 66500 },
+    { name: "Mint Forest 캔들", price: 65100 },
+    { name: "Mint Forest 룸스프레이", price: 61600 },
+    { name: "White Bloom 디퓨저", price: 66500 },
+    { name: "White Bloom 캔들", price: 65100 },
+    { name: "White Bloom 룸스프레이", price: 61600 },
+
+    { name: "구스다운 킹 이불세트", price: 1050000 },
+    { name: "구스다운 퀸 이불세트", price: 1008000 },
+    { name: "구스다운 싱글 이불세트", price: 840000 },
+
+    { name: "베드시트 킹", price: 189000 },
+    { name: "베드시트 퀸", price: 175000 },
+    { name: "베드시트 싱글", price: 147000 },
+
+    { name: "구스다운 프리미엄 베개세트", price: 368000 },
+    { name: "구스다운 킹 베개세트", price: 316000 },
+
+    { name: "배스로브", price: 129500 },
+    { name: "배스 타월 세트", price: 80500 },
+    { name: "페이스 타월 세트", price: 63200 },
+
+    { name: "버터 치킨 커리", price: 27300 }
   ];
 
   const qtyInputs = document.querySelectorAll('.qty-input');
+
   let selectedIndex = 0;
-
-  const detailTitle = document.getElementById('detailTitle');
-  const detailDesc  = document.getElementById('detailDesc');
-  const detailPrice = document.getElementById('detailPrice');
-  const detailSubtotal = document.getElementById('detailSubtotal');
-  const detailQty   = document.getElementById('detailQty');
-  const grandTotal  = document.getElementById('grandTotal');
-  const grandTotalInput = document.getElementById('grandTotalInput');
-
-  const img1 = document.getElementById('img1');
-  const img2 = document.getElementById('img2');
 
   function selectProduct(index) {
     selectedIndex = index;
     const p = products[index];
-    detailTitle.innerText = p.name;
-    detailPrice.innerText = p.price.toLocaleString();
-    detailDesc.innerHTML = "이 상품의 상세 설명(더미 텍스트)이 들어갈 자리입니다.<br>나중에 실제 향 설명, 구성, 사용법 등을 넣을 수 있습니다.";
 
-    // 현재 수량 동기화
-    const currentQty = parseInt(qtyInputs[index].value) || 0;
-    detailQty.value = currentQty;
-    const sub = p.price * currentQty;
-    detailSubtotal.innerText = sub.toLocaleString();
+    document.getElementById("detailTitle").innerText = p.name;
+    document.getElementById("detailPrice").innerText = p.price.toLocaleString();
+    document.getElementById("detailDesc").innerHTML =
+      "이 상품의 상세 설명(더미 텍스트)이 들어갈 자리입니다.<br>나중에 실제 내용을 입력하시면 됩니다.";
 
-    // 더미 이미지 변경
-    img1.src = "https://via.placeholder.com/600x260?text=" + encodeURIComponent(p.name + " 이미지 1");
-    img2.src = "https://via.placeholder.com/600x260?text=" + encodeURIComponent(p.name + " 이미지 2");
+    let curQty = parseInt(qtyInputs[index].value) || 0;
+    document.getElementById("detailQty").value = curQty;
+    document.getElementById("detailSubtotal").innerText = (p.price * curQty).toLocaleString();
+
+    document.getElementById("img1").src = "https://via.placeholder.com/600x260?text=" +
+      encodeURIComponent(p.name + " 이미지 1");
+    document.getElementById("img2").src = "https://via.placeholder.com/600x260?text=" +
+      encodeURIComponent(p.name + " 이미지 2");
+
     showSlide(1);
   }
 
@@ -456,102 +557,93 @@
       const q = parseInt(input.value) || 0;
       total += q * products[i].price;
     });
-    grandTotal.innerText = total.toLocaleString();
-    grandTotalInput.value = total;
-    // 현재 선택 상품 subtotal 갱신
+    document.getElementById("grandTotal").innerText = total.toLocaleString();
+    document.getElementById("grandTotalInput").value = total;
+
     const curQty = parseInt(qtyInputs[selectedIndex].value) || 0;
-    detailSubtotal.innerText = (curQty * products[selectedIndex].price).toLocaleString();
+    document.getElementById("detailSubtotal").innerText = (curQty * products[selectedIndex].price).toLocaleString();
   }
 
-  // 좌측 상품 행 클릭 시 상품 선택
   document.querySelectorAll('.product-row').forEach(row => {
-    row.addEventListener('click', (e) => {
+    row.addEventListener('click', () => {
       const idx = parseInt(row.getAttribute('data-index'));
       selectProduct(idx);
     });
   });
 
-  // 좌측 수량 input 변경 시 총액 / 미리보기 연동
   qtyInputs.forEach(input => {
     input.addEventListener('input', () => {
       const idx = parseInt(input.getAttribute('data-index'));
       if (idx === selectedIndex) {
-        detailQty.value = input.value;
+        document.getElementById("detailQty").value = input.value;
       }
       calcTotal();
     });
   });
 
-  // 우측 미리보기 수량 변경 시 좌측 수량 반영
-  detailQty.addEventListener('input', () => {
-    const q = detailQty.value;
-    qtyInputs[selectedIndex].value = q;
+  document.getElementById("detailQty").addEventListener('input', () => {
+    qtyInputs[selectedIndex].value = document.getElementById("detailQty").value;
     calcTotal();
   });
 
-  // 슬라이더 제어
   function showSlide(n) {
-    if (n === 1) {
-      img1.classList.add('active');
-      img2.classList.remove('active');
-    } else {
-      img2.classList.add('active');
-      img1.classList.remove('active');
-    }
+    document.getElementById("img1").classList.toggle("active", n === 1);
+    document.getElementById("img2").classList.toggle("active", n === 2);
   }
 
-  // 결제 방식 조건부 표시
-  const paySelect = document.getElementById('paySelect');
-  const bankArea  = document.getElementById('bankArea');
-  const cardArea  = document.getElementById('cardArea');
+  /* 결제 방식 조건부 표시 */
+  const paySelect = document.getElementById("paySelect");
+  const bankArea  = document.getElementById("bankArea");
+  const cardArea  = document.getElementById("cardArea");
 
-  paySelect.addEventListener('change', () => {
-    bankArea.classList.add('hidden');
-    cardArea.classList.add('hidden');
-    if (paySelect.value === "계좌이체") bankArea.classList.remove('hidden');
-    if (paySelect.value === "카드결제") cardArea.classList.remove('hidden');
+  paySelect.addEventListener("change", () => {
+    bankArea.classList.add("hidden");
+    cardArea.classList.add("hidden");
+    if (paySelect.value === "계좌이체") bankArea.classList.remove("hidden");
+    if (paySelect.value === "카드결제") cardArea.classList.remove("hidden");
   });
 
-  // 증빙 조건부 표시
-  const taxSelect = document.getElementById('taxSelect');
-  const taxArea   = document.getElementById('taxArea');
+  /* 증빙 조건부 */
+  const taxSelect = document.getElementById("taxSelect");
+  const taxArea   = document.getElementById("taxArea");
 
-  taxSelect.addEventListener('change', () => {
-    taxArea.classList.add('hidden');
-    if (taxSelect.value !== "") taxArea.classList.remove('hidden');
+  taxSelect.addEventListener("change", () => {
+    taxArea.classList.add("hidden");
+    if (taxSelect.value !== "") taxArea.classList.remove("hidden");
   });
 
-  // 제출 전 검증
   function validateForm() {
-    const total = parseInt(grandTotalInput.value) || 0;
+    const total = parseInt(document.getElementById("grandTotalInput").value);
     if (total <= 0) {
-      alert("최소 한 개 이상의 상품 수량을 입력해 주세요.");
+      alert("최소 한 개 이상의 상품을 선택해 주세요.");
       return false;
     }
 
-    const pay = paySelect.value;
-    if (pay === "계좌이체") {
+    if (paySelect.value === "계좌이체") {
       const depositor = document.querySelector('input[name="입금자명"]').value.trim();
-      const depositAmount = parseInt(document.getElementById('depositAmount').value) || 0;
+      const depositAmount = parseInt(document.getElementById("depositAmount").value);
+
       if (!depositor) {
-        alert("계좌이체를 선택하셨습니다.\n입금자명을 입력해 주세요.");
+        alert("계좌이체 선택 시 입금자명을 입력해야 합니다.");
         return false;
       }
       if (depositAmount !== total) {
-        alert("입금 금액이 주문 총액과 일치하지 않습니다.\n확인 후 다시 입력해 주세요.");
-        return false;
-      }
-    } else if (pay === "카드결제") {
-      const cardPhone = document.querySelector('input[name="카드결제 연락처"]').value.trim();
-      if (!cardPhone) {
-        alert("카드 결제를 선택하셨습니다.\n결제 링크를 받을 연락처를 입력해 주세요.");
+        alert("입금 금액이 주문 총액과 일치하지 않습니다.");
         return false;
       }
     }
-    return true; // 통과 시 제출
+
+    if (paySelect.value === "카드결제") {
+      const cardPhone = document.querySelector('input[name="카드결제 연락처"]').value.trim();
+      if (!cardPhone) {
+        alert("카드 결제 링크를 받을 연락처를 입력해 주세요.");
+        return false;
+      }
+    }
+    return true;
   }
 
-  // 초기 상태: 첫 번째 상품 선택
+  /* 페이지 진입 시 첫 상품 자동 선택 */
   selectProduct(0);
   calcTotal();
 </script>
