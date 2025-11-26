@@ -1,254 +1,276 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>신라 시그니처 컬렉션 주문</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연말 할인 주문서</title>
 
-    <!-- 폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Noto Sans KR', sans-serif;
+        background: #F7F7F7;
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        background: #fff;
+        max-width: 800px;
+        width: 100%;
+        padding: 40px 50px;
+        border-radius: 6px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        box-sizing: border-box;
+    }
+    h1 {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 8px;
+        color: #2c3e50;
+    }
+    h4 {
+        text-align: center;
+        color: #666;
+        margin-top: 0;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+    .info-box {
+        background: #fafafa;
+        padding: 20px;
+        border: 1px solid #eee;
+        line-height: 1.6;
+        margin-bottom: 40px;
+    }
+    h2 {
+        margin-top: 40px;
+        font-size: 1.2em;
+        color: #2c3e50;
+        border-left: 3px solid #b0c4de;
+        padding-left: 10px;
+    }
+    label {
+        display: block;
+        margin: 14px 0 6px;
+        font-weight: 500;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    select {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        background: transparent;
+        font-size: 1em;
+    }
+    input:focus { outline: none; border-bottom: 1px solid #2c3e50; }
 
-    <style>
-        body { 
-            font-family: 'Noto Sans KR', sans-serif; 
-            margin: 0; 
-            padding: 40px 20px;
-            background-color: #F7F7F7;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            color: #333;
-            font-weight: 300;
-        }
-        .container { 
-            max-width: 750px;
-            width: 100%;
-            padding: 50px;
-            background: #fff; 
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            box-sizing: border-box;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-        }
-        .header-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.3em;
-            color: #2c3e50;
-            margin: 0;
-        }
-        .header-subtitle {
-            font-size: 0.9em;
-            color: #777;
-            margin-top: 10px;
-            letter-spacing: 0.5px;
-        }
+    .product-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .product-row input[type="number"] {
+        width: 80px;
+        margin-left: 10px;
+    }
 
-        /* 상품 이미지 */
-        .product-image-container { text-align: center; margin-bottom: 40px; }
-        .product-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-        }
+    .total-box {
+        background: #fafafa;
+        padding: 15px;
+        border: 1px solid #eee;
+        font-size: 1.3em;
+        font-weight: 600;
+        margin-top: 25px;
+    }
 
-        /* 섹션 */
-        .form-section {
-            margin-bottom: 35px;
-            padding: 20px 0;
-        }
-        h2 {
-            font-size: 1.2em;
-            font-weight: 500;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            border-left: 3px solid #b0c4de;
-            padding-left: 10px;
-        }
+    button {
+        width: 100%;
+        padding: 18px;
+        margin-top: 40px;
+        background: #2c3e50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        background: #fff;
+        color: #2c3e50;
+        border: 1px solid #2c3e50;
+    }
 
-        /* 입력 */
-        label { 
-            display: block; 
-            margin-top: 15px; 
-            margin-bottom: 8px;
-            font-weight: 400;
-            font-size: 0.95em;
-            color: #555;
-            letter-spacing: 0.4px;
-        }
-        input[type="text"], input[type="number"], input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-bottom: 1px solid #ccc;
-            border-radius: 0;
-            box-sizing: border-box;
-            font-size: 1em;
-            background: transparent;
-        }
-        input:focus {
-            border-bottom-color: #2c3e50;
-            outline: none;
-        }
-
-        /* 가격 */
-        .price-box {
-            margin-top: 15px;
-            padding: 15px 0;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-        .price-label { font-weight: 400; font-size: 0.95em; color: #666; }
-        .price-value { font-size: 1.4em; font-weight: 500; margin-top: 5px; }
-
-        /* 수량 버튼 */
-        .qty-wrap {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .qty-btn {
-            width: 32px;
-            height: 32px;
-            border: 1px solid #ccc;
-            background: white;
-            cursor: pointer;
-            font-size: 18px;
-            line-height: 28px;
-            text-align: center;
-        }
-        #qty { font-size: 18px; font-weight: 500; min-width: 20px; display: inline-block; }
-
-        /* 총액 */
-        .total-box {
-            margin-top: 25px;
-            padding: 15px 0;
-            border-top: 1px solid #eee;
-        }
-        .total-label { font-size: 1em; color: #333; }
-        .total-value { font-size: 1.5em; font-weight: 600; }
-
-        /* 버튼 */
-        button {
-            background-color: #2c3e50;
-            color: white;
-            padding: 16px;
-            margin-top: 40px;
-            border: 1px solid #2c3e50;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1em;
-            font-weight: 400;
-            transition: 0.3s;
-            letter-spacing: 1px;
-        }
-        button:hover {
-            background-color: white;
-            color: #2c3e50;
-        }
-    </style>
+    .hidden { display: none; }
+</style>
 </head>
 
 <body>
 <div class="container">
 
-    <!-- 헤더 -->
-    <header>
-        <p class="header-subtitle">The Premium Linen</p>
-        <h1 class="header-title">신라 시그니처 침구 주문서</h1>
-    </header>
+    <h1>연말 할인 주문서</h1>
+    <h4>감사의 마음을 담아 특별 할인 혜택을 드립니다!<br>
+        판매 상품: 전상품<br>
+        판매 기간: 11월 10일(월) ~ 12월 31일(수) (마감 이후 접수 불가)<br>
+        구매 방법: 폼 작성 후 <b>하나은행 183-910001-24105</b> 로 입금<br>
+        배송일: 결제 확인 후 익일 배송 (주말/공휴일 제외)<br>
+        문의: 02-0000-0000 (평일 09:00~18:00)
+    </h4>
 
-    <!-- 이미지 -->
-    <div class="product-image-container">
-        <img src="https://i.imgur.com/1m6Lz3n.png" class="product-image">
-    </div>
+    <form action="https://formspree.io/f/XXXXXXXX" method="POST">
 
-    <form action="https://formspree.io/f/xxxxxxx" method="POST">
+        <!-- 1. 주문자 정보 -->
+        <h2>1. 주문자 정보</h2>
+        <label>주문자 이름</label>
+        <input type="text" name="주문자 이름" required>
 
-        <!-- 상품 정보 -->
-        <div class="form-section">
-            <h2>1. 상품 정보</h2>
+        <label>소속 회사</label>
+        <input type="text" name="소속 회사" required>
 
-            <label>주문 상품명</label>
-            <input type="text" name="상품명" value="신라 시그니처 컬렉션 Q" readonly>
+        <!-- 2. 상품 선택 -->
+        <h2>2. 구매 상품 선택</h2>
 
-            <label>수량</label>
-            <div class="qty-wrap">
-                <button type="button" class="qty-btn" id="minus">−</button>
-                <span id="qty">1</span>
-                <button type="button" class="qty-btn" id="plus">+</button>
-            </div>
-
-            <input type="hidden" name="수량" id="hiddenQty" value="1">
-
-            <div class="price-box">
-                <p class="price-label">판매가</p>
-                <p class="price-value">2,800,000원</p>
-            </div>
-
-            <div class="total-box">
-                <p class="total-label">총 금액</p>
-                <p class="total-value" id="totalPrice">2,800,000원</p>
-            </div>
+        <!-- 상품 목록 -->
+        <div class="product-row">
+            <input type="checkbox" class="p-check" data-price="66500" name="상품_MW_디퓨저"> Mossy Wood 디퓨저 (66,500원)
+            <input type="number" class="p-qty" min="0" value="0">
         </div>
 
-        <!-- 배송 정보 -->
-        <div class="form-section">
-            <h2>2. 배송 정보</h2>
-
-            <label>수령인</label>
-            <input type="text" name="수령인" required>
-
-            <label>주소</label>
-            <input type="text" name="배송주소" required>
+        <div class="product-row">
+            <input type="checkbox" class="p-check" data-price="65100" name="상품_MW_캔들"> Mossy Wood 캔들 (65,100원)
+            <input type="number" class="p-qty" min="0" value="0">
         </div>
 
-        <!-- 연락처 -->
-        <div class="form-section">
-            <h2>3. 연락처</h2>
-
-            <label>휴대폰 번호</label>
-            <input type="text" name="연락처" placeholder="010-XXXX-XXXX" required>
-
-            <label>이메일 (선택)</label>
-            <input type="email" name="이메일">
+        <div class="product-row">
+            <input type="checkbox" class="p-check" data-price="61600" name="상품_MW_룸스프레이"> Mossy Wood 룸스프레이 (61,600원)
+            <input type="number" class="p-qty" min="0" value="0">
         </div>
 
-        <button type="submit">주문서 제출 (결제 없음)</button>
+        <div class="product-row">
+            <input type="checkbox" class="p-check" data-price="66500" name="상품_MF_디퓨저"> Mint Forest 디퓨저 (66,500원)
+            <input type="number" class="p-qty" min="0" value="0">
+        </div>
+
+        <div class="product-row">
+            <input type="checkbox" class="p-check" data-price="65100" name="상품_MF_캔들"> Mint Forest 캔들 (65,100원)
+            <input type="number" class="p-qty" min="0" value="0">
+        </div>
+
+        <!-- 총액 -->
+        <div class="total-box" id="totalPrice">총 금액: 0원</div>
+
+        <!-- 3. 배송 정보 -->
+        <h2>3. 배송 정보</h2>
+
+        <label>수취인 이름</label>
+        <input type="text" name="수취인 이름" required>
+
+        <label>수취인 전화번호</label>
+        <input type="text" name="수취인 전화번호" required>
+
+        <label>수취인 주소</label>
+        <input type="text" name="수취인 주소" required>
+
+        <!-- 4. 결제 방식 -->
+        <h2>4. 결제 방식 선택</h2>
+
+        <label>결제 방식</label>
+        <select id="paySelect" name="결제 방식" required>
+            <option value="">선택하세요</option>
+            <option value="계좌이체">계좌이체</option>
+            <option value="카드결제">카드결제(개인/법인)</option>
+        </select>
+
+        <!-- 계좌이체 옵션 -->
+        <div id="bankArea" class="hidden">
+            <label>입금자명</label>
+            <input type="text" name="입금자명">
+
+            <label>입금 금액 (총액과 동일해야 함)</label>
+            <input type="number" name="입금 금액" id="depositAmount">
+        </div>
+
+        <!-- 카드결제 옵션 -->
+        <div id="cardArea" class="hidden">
+            <label>결제 링크 받을 연락처</label>
+            <input type="text" name="카드결제 연락처">
+        </div>
+
+        <!-- 5. 현금영수증/세금계산서 -->
+        <h2>5. 현금영수증 / 세금계산서</h2>
+
+        <label>발행 선택</label>
+        <select id="taxSelect" name="증빙 선택">
+            <option value="">선택 안함</option>
+            <option value="현금영수증">현금영수증(개인)</option>
+            <option value="세금계산서">세금계산서(기업)</option>
+        </select>
+
+        <div id="taxArea" class="hidden">
+            <label>발행 번호 입력</label>
+            <input type="text" name="증빙 발행 번호">
+        </div>
+
+        <button type="submit">주문서 제출하기</button>
+
     </form>
 </div>
 
 <script>
-    const price = 2800000;
-    const qtyEl = document.getElementById("qty");
-    const totalEl = document.getElementById("totalPrice");
-    const hiddenQty = document.getElementById("hiddenQty");
-    const plus = document.getElementById("plus");
-    const minus = document.getElementById("minus");
+    // 상품 & 가격 계산
+    const checks = document.querySelectorAll('.p-check');
+    const qtys = document.querySelectorAll('.p-qty');
+    const totalPrice = document.getElementById('totalPrice');
 
-    plus.addEventListener("click", () => {
-        let q = Number(qtyEl.innerText);
-        q++;
-        qtyEl.innerText = q;
-        hiddenQty.value = q;
-        totalEl.innerText = (price * q).toLocaleString() + "원";
+    function calcTotal() {
+        let total = 0;
+        checks.forEach((chk, i) => {
+            if (chk.checked) {
+                const price = Number(chk.dataset.price);
+                const qty = Number(qtys[i].value);
+                total += price * qty;
+            }
+        });
+        totalPrice.innerText = "총 금액: " + total.toLocaleString() + "원";
+    }
+
+    checks.forEach((c, i) => {
+        c.addEventListener('change', () => {
+            if (!c.checked) qtys[i].value = 0;
+            calcTotal();
+        });
+    });
+    qtys.forEach((q, i) => {
+        q.addEventListener('input', () => {
+            if (Number(q.value) > 0) checks[i].checked = true;
+            calcTotal();
+        });
     });
 
-    minus.addEventListener("click", () => {
-        let q = Number(qtyEl.innerText);
-        if (q > 1) {
-            q--;
-            qtyEl.innerText = q;
-            hiddenQty.value = q;
-            totalEl.innerText = (price * q).toLocaleString() + "원";
-        }
+    // 결제 방식 선택 시 조건부 표시
+    const paySelect = document.getElementById("paySelect");
+    const bankArea = document.getElementById("bankArea");
+    const cardArea = document.getElementById("cardArea");
+
+    paySelect.addEventListener("change", () => {
+        bankArea.classList.add("hidden");
+        cardArea.classList.add("hidden");
+
+        if (paySelect.value === "계좌이체") bankArea.classList.remove("hidden");
+        if (paySelect.value === "카드결제") cardArea.classList.remove("hidden");
+    });
+
+    // 증빙조건 조건부 표시
+    const taxSelect = document.getElementById("taxSelect");
+    const taxArea = document.getElementById("taxArea");
+
+    taxSelect.addEventListener("change", () => {
+        taxArea.classList.add("hidden");
+        if (taxSelect.value !== "") taxArea.classList.remove("hidden");
     });
 </script>
 
