@@ -25,23 +25,21 @@
   }
 
   /* 배너 */
-  /* 배너 (안 잘리도록 수정됨) */
+  /* 배너 (절대 잘리지 않게 수정) */
   .banner {
     width: 100%;
-    max-height: 280px;
-    overflow: hidden;
     border-radius: 8px;
     margin-bottom: 30px;
-    background: #fafafa; /* 이미지가 더 작을 때 배경톤 */
+    overflow: hidden; /* 있어도 되고 없어도 됨 */
   }
   
   .banner img {
     width: 100%;
-    height: auto;
-    object-fit: contain;   /* ✔ 비율 유지 + 절대 안 잘림 */
+    height: auto;        /* 이미지 비율 100% 유지 */
+    object-fit: contain; /* 이미지 안 잘림 */
     display: block;
   }
-
+  
 
   h1 {
     text-align: center;
