@@ -118,11 +118,14 @@
     color: #222;
   }
 
+  /* 상품 리스트 row 개선 */
   .product-row {
     display: grid;
-    grid-template-columns: 1fr 100px 90px;
-    padding: 10px 0;
+    grid-template-columns: 1fr 120px 60px; /* 수량 칸 좁게 조정 */
+    align-items: center;
+    padding: 12px 0;
     border-bottom: 1px solid #f3f3f3;
+    gap: 20px; /* 칼럼 간 간격 넓힘 */
     cursor: pointer;
   }
 
@@ -133,17 +136,20 @@
   .product-name {
     font-weight: 500;
   }
-
+  
   .product-price {
     text-align: right;
+    font-size: 0.95em;
   }
 
   .product-qty input {
     width: 100%;
-    padding: 6px;
+    max-width: 55px;  /* 수량 input 가로 폭 줄임 */
+    padding: 4px 6px; /* 패딩 더 타이트하게 */
     border: 1px solid #ccc;
     border-radius: 4px;
     text-align: center;
+    font-size: 0.9em;
   }
 
   /* 상세영역 */
